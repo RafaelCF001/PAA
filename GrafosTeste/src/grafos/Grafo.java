@@ -66,12 +66,13 @@ public interface Grafo {
     
     /**
      * Indica os vértices adjacentes ao vertice indicado.
+     *
      * @param vertice
      * @return Uma coleção de vértices adjacentes ao vértice indicado.
      * @throws java.lang.Exception Uma exceção é lançada quando o vértice indicado
-     * não existe.
+     *                             não existe.
      */
-    public ArrayList<Vertice> adjacentesDe(Vertice vertice) throws Exception;
+    public Collection<Vertice> adjacentesDe(Vertice vertice) throws Exception;
     
     /**
      * Seta o peso da aresta entre os vértices origem e destino.
@@ -97,5 +98,10 @@ public interface Grafo {
      * @return vértices do grafo.
      */
     public ArrayList<Vertice> vertices();
-    
+
+    Aresta arestaEntre(Vertice u, Vertice v);
+
+    int getValue(int i, int j);
+
+    public String getTempos();
 }
