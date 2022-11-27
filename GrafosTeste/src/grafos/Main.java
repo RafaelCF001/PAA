@@ -30,8 +30,10 @@ public class Main {
             int id = Integer.parseInt(vetorGrafo.get(i).split(" ")[0]);
 
             for(int j = 1; j < vetorSplit.length ; j++){
+                if(vetorSplit[j].equals(";")){
+                    continue;
+                }
                 String[] arestas = vetorSplit[j].split("-");
-
                 int pos = Integer.parseInt(arestas[0]); // 0 é a posição
                 double peso = Integer.parseInt(arestas[1].replace(";","")); // 1 é o peso
                 int cmp = i - 1;
@@ -41,18 +43,22 @@ public class Main {
             }
             
              if(opcao == 1){
-                algo.buscaEmProfundidade(grap3);
+                String tempos = algo.buscaEmProfundidade(grap3);
+                AlgoFrame.setTextLabel1(tempos);
             }else if(opcao == 2){
                 ArrayList<Vertice> vertices = grap3.vertices();
-                algo.buscaEmLargura(grap3,vertices.get(posVertice));
+                String tempos = algo.buscaEmLargura(grap3,vertices.get(posVertice));
+                AlgoFrame.setTextLabel1(tempos);
             }
             else if(opcao == 3){
                 ArrayList<Vertice> vertices = grap3.vertices();
-                algo.menorCaminho(grap3,vertices.get(posVertice),vertices.get(vFinal));
+                String caminho = algo.menorCaminho(grap3,vertices.get(posVertice),vertices.get(vFinal));
+                AlgoFrame.setTextLabel1(caminho);
                
             }else if(opcao == 4){
                 ArrayList<Vertice> vertices = grap3.vertices();
-                algo.agmUsandoKruskall(grap3,vertices.get(posVertice));
+                String arestas = algo.agmUsandoKruskall(grap3,vertices.get(posVertice));
+                AlgoFrame.setTextLabel1(arestas);
             }
             
         }else if(tipoGrafo == 2){
@@ -82,17 +88,22 @@ public class Main {
             }
             
             if(opcao == 1){
-                algo.buscaEmProfundidade(grafo);
+                String tempos = algo.buscaEmProfundidade(grafo);
+                AlgoFrame.setTextLabel1(tempos);
             }else if(opcao == 2){
                 ArrayList<Vertice> vertices = grafo.vertices();
-                algo.buscaEmLargura(grafo,vertices.get(posVertice));
+                String tempos = algo.buscaEmLargura(grafo,vertices.get(posVertice));
+                AlgoFrame.setTextLabel1(tempos);
+
             }
             else if(opcao == 3){
                 ArrayList<Vertice> vertices = grafo.vertices();
-                algo.menorCaminho(grafo,vertices.get(posVertice),vertices.get(vFinal));
+                String caminho = algo.menorCaminho(grafo,vertices.get(posVertice),vertices.get(vFinal));
+                AlgoFrame.setTextLabel1(caminho);
             }else if(opcao == 4){
                 ArrayList<Vertice> vertices = grafo.vertices();
-                algo.agmUsandoKruskall(grafo,vertices.get(posVertice));
+                String arestas = algo.agmUsandoKruskall(grafo,vertices.get(posVertice));
+                AlgoFrame.setTextLabel1(arestas);
             }
         }else if(tipoGrafo == 3){
             ListAdj graph2 = new ListAdj(qtdGrafo);
@@ -118,17 +129,22 @@ public class Main {
             }
             }
              if(opcao == 1){
-                algo.buscaEmProfundidade(graph2);
+                String tempos  = algo.buscaEmProfundidade(graph2);
+                AlgoFrame.setTextLabel1(tempos);
             }else if(opcao == 2){
                 ArrayList<Vertice> vertices = graph2.vertices();
-                algo.buscaEmLargura(graph2,vertices.get(posVertice));
+                String tempos = algo.buscaEmLargura(graph2,vertices.get(posVertice));
+                AlgoFrame.setTextLabel1(tempos);
+
             }
             else if(opcao == 3){
                 ArrayList<Vertice> vertices = graph2.vertices();
-                algo.menorCaminho(graph2,vertices.get(posVertice),vertices.get(vFinal));
+               String caminho =  algo.menorCaminho(graph2,vertices.get(posVertice),vertices.get(vFinal));
+               AlgoFrame.setTextLabel1(caminho);
             }else if(opcao == 4){
                 ArrayList<Vertice> vertices = graph2.vertices();
-                algo.agmUsandoKruskall(graph2,vertices.get(posVertice));
+                String arestas = algo.agmUsandoKruskall(graph2,vertices.get(posVertice));
+                AlgoFrame.setTextLabel1(arestas);
             }
         }
         

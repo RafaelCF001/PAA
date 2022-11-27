@@ -27,7 +27,7 @@ public interface AlgoritmosEmGrafos {
      * @param g Grafo
      * @return as arestas da floresta resultante
      */
-    public Collection<Aresta> buscaEmProfundidade (Grafo g) throws Exception;
+    public String buscaEmProfundidade (Grafo g) throws Exception;
     
     /**
      * Função que indica o menor caminho entre dois pontos. Nesta função, é
@@ -37,7 +37,7 @@ public interface AlgoritmosEmGrafos {
      * e o destino.
      * @throws java.lang.Exception Caso não exista caminho, uma exception é lançada.
      */
-    public ArrayList<Vertice> menorCaminho(Grafo g, Vertice origem, Vertice destino) throws Exception;
+    public String menorCaminho(Grafo g, Vertice origem, Vertice destino) throws Exception;
 
     /**
      * Verifica se existe ciclo no grafo.
@@ -80,7 +80,7 @@ public interface AlgoritmosEmGrafos {
      * @param destino
      * @return As arestas (em ordem) do caminho mais curto.
      */
-    public ArrayList<Aresta> caminhoMaisCurto( Grafo g, Vertice origem, Vertice destino );
+    public String caminhoMaisCurto( Grafo g, Vertice origem, Vertice destino );
     
     /**
      * Dado um caminho, esta função calcula o custo do caminho.

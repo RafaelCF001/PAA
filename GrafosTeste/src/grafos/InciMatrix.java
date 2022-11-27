@@ -15,6 +15,15 @@ public class InciMatrix implements Grafo{
     private int tempoInicial = 0;
     private int tempoFinal = 0;
     
+    public Aresta encontraAresta(int i, int j){
+          for(Aresta a: arestas){
+              if(a.destino().id() == j && a.origem().id() == i){
+                  return a;
+              }
+          }
+          return null;
+      }
+    
     public String getTempos(){
         String resultado = "";
         for(Vertice v: vertices){

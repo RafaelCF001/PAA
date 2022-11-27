@@ -104,4 +104,6 @@ public interface Grafo {
     int getValue(int i, int j);
 
     public String getTempos();
+
+    public Aresta encontraAresta(int i, int j);
 }

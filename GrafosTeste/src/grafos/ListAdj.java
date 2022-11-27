@@ -20,6 +20,14 @@ public class ListAdj implements Grafo{
         }
         return resultado;
     }
+      public Aresta encontraAresta(int i, int j){
+          for(Aresta a: arestas){
+              if(a.destino().id() == j && a.origem().id() == i){
+                  return a;
+              }
+          }
+          return null;
+      }
     public ListAdj(int qtdVertices){
         this.adjList = new HashMap< Vertice,LinkedList<HashMap<Vertice, Integer>>>();
         this.arestas = new ArrayList<>();

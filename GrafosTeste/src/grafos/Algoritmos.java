@@ -13,11 +13,11 @@ public class Algoritmos implements AlgoritmosEmGrafos{
     public Collection<Aresta> buscaEmLargura (Grafo g){
         return null;
     }
-    public ArrayList<Aresta> buscaEmLargura(Grafo g, Vertice inicial) throws Exception {
+    public String buscaEmLargura(Grafo g, Vertice inicial) throws Exception {
             inicial.setCor("cinza");
             Queue<Vertice> q = new LinkedList<>();
             q.add(inicial);
-
+            String tempos = "";
             while(!(q.isEmpty())){
                 Vertice u = q.remove();
                 ArrayList<Vertice> adj = (ArrayList<Vertice>) g.adjacentesDe(u);
@@ -31,35 +31,48 @@ public class Algoritmos implements AlgoritmosEmGrafos{
                      }
                 }
                 u.setCor("preto");
-                System.out.println("Pintou: " + u.getTempo());
+                tempos += "(" + u.getTempo() + "), ";
             }
             
-          return null;
+          return tempos;
     }
-    public void dfsVisit(Vertice u, Grafo g, int tempo) throws Exception {
+    public void dfsVisit(Vertice u, Grafo g) throws Exception {
         u.setCor("cinza");
         tempo++;
         u.setTempoInicial(tempo);
         ArrayList<Vertice> adjacentes = (ArrayList<Vertice>) g.adjacentesDe(u);
         for(Vertice adj: adjacentes){
             if(adj.getCor().equals("branco")){
-                dfsVisit(adj,g,tempo);
+                dfsVisit(adj,g);
+            }else if(adj.getTempoFinal() == 0){
+                Aresta a = g.encontraAresta(u.id(),adj.id());
+                a.setTipoAresta("retorno");
+            }else if(u.getTempo() < adj.getTempo()){
+                Aresta a = g.encontraAresta(u.id(),adj.id());
+                a.setTipoAresta("avanco");
+            }else{
+                Aresta a = g.encontraAresta(u.id(),adj.id());
+                a.setTipoAresta("cruzamento");
+
             }
         }
         u.setCor("Preto");
+        tempo++;
         u.setTempoFinal(tempo);
-        System.out.println("Visitou: " + u.getTempoFinal());
     }
     @Override
-    public Collection<Aresta> buscaEmProfundidade(Grafo g) throws Exception {
+    public String buscaEmProfundidade(Grafo g) throws Exception {
         ArrayList<Aresta> visitou = new ArrayList<>();
+        String tempos = "";
         for(Vertice u: g.vertices()){
             if(u.getCor().equals("branco")){
-                dfsVisit(u,g,tempo);
+                dfsVisit(u,g);
             }
         }
-
-        return visitou;
+         for(Vertice v: g.vertices()){
+             tempos+= "(" + v.getTempo() + ", " +  v.getTempoFinal() + ") \n";
+         }
+        return tempos;
     }
     public void relaxa(Vertice u, Vertice v, Aresta w, Queue<Vertice> fila){
         if(v.getDistancia() > (u.getDistancia() + w.peso())){
@@ -70,9 +83,9 @@ public class Algoritmos implements AlgoritmosEmGrafos{
         }
     }
     @Override
-    public ArrayList<Vertice> menorCaminho(Grafo g, Vertice origem, Vertice destino) throws Exception {
+    public String menorCaminho(Grafo g, Vertice origem, Vertice destino) throws Exception {
         ArrayList<Vertice> caminho = new ArrayList<>();
-
+        String caminhoFinal = "";
         origem.setDistancia(0);
         Queue<Vertice> fila = new LinkedList<>();
         fila.add(origem);
@@ -93,10 +106,10 @@ public class Algoritmos implements AlgoritmosEmGrafos{
         }
         for (Vertice v: caminho){
             if(v != null) {
-                System.out.println("caminho: " + v.id());
+                caminhoFinal += "(" + v.id() + ", " + v.getDistancia() + ")" + " \n";
             }
         }
-    return caminho;
+    return caminhoFinal;
     }
 
     @Override
@@ -120,9 +133,11 @@ public class Algoritmos implements AlgoritmosEmGrafos{
         int b = busca(j,pai);
         pai[a] = b;
     }
-    public Collection<Aresta> agmUsandoKruskall(Grafo g,Vertice inical) {
+    public String agmUsandoKruskall(Grafo g,Vertice inical) {
         ArrayList<Aresta> agm = new ArrayList<>();
+        String arestasFinais = "";
         ArrayList<Vertice> vertice = g.vertices();
+        String caminho  = "";
         int[] pai = new int[g.numeroDeVertices()];
         int contador = 0;
         for(int i = 0; i< g.numeroDeVertices();i++){
@@ -142,11 +157,11 @@ public class Algoritmos implements AlgoritmosEmGrafos{
                 }
             }
             union(a,b,pai);
-            System.out.println("Min: " + min);
+            arestasFinais += "(" + a + ", " + b + ") , \n";
             contador++;
         }
 
-        return null;
+        return arestasFinais;
     }
 
     @Override
@@ -160,7 +175,7 @@ public class Algoritmos implements AlgoritmosEmGrafos{
     }
 
     @Override
-    public ArrayList<Aresta> caminhoMaisCurto(Grafo g, Vertice origem, Vertice destino) {
+    public String caminhoMaisCurto(Grafo g, Vertice origem, Vertice destino) {
         return null;
     }
 

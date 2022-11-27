@@ -14,13 +14,17 @@ public class Aresta {
     private Vertice origem;
     private Vertice destino;
     private double peso;
+    private String tipoAresta = "";
     
+  
     public Aresta( Vertice origem, Vertice destino ){
         this.origem = origem;
         this.destino = destino;
         this.peso = 1;
     }
-    
+    public void setTipoAresta(String tipo){
+        this.tipoAresta = tipo;
+    }
     public Aresta( Vertice origem, Vertice destino, double peso ){
         this.origem = origem;
         this.destino = destino;

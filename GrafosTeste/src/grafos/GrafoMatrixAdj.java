@@ -11,6 +11,7 @@ public class GrafoMatrixAdj implements Grafo {
     private int tempoInicial = 0;
     private int tempoFinal = 0;
    
+    
     public String getTempos(){
         String resultado = "";
         for(Vertice v: vertices){
@@ -23,6 +24,14 @@ public class GrafoMatrixAdj implements Grafo {
         this.vertices = new ArrayList<>();
         this.qtdVertices = qtdVertices;
 
+    }
+    public Aresta encontraAresta(int i, int j){
+        if(arestas[i][j] != null){
+            return arestas[i][j];
+        }
+        else{
+            return null;
+        }
     }
     public int getValue(int i,int j){
         if(arestas[i][j] != null) {
